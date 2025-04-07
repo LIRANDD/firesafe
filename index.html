@@ -491,3 +491,13 @@
   </script>
 </body>
 </html>
+
+  <script>
+    function handleSubmit() {
+      setTimeout(() => {
+        document.getElementById("mainForm").reset();
+        document.getElementById("confirmationMessage").style.display = "block";
+      }, 500);
+      return true;
+    }
+  </script>
