@@ -68,6 +68,7 @@
   </nav>
   <div id="forms"></div>
   <script>
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdXa9qlUO8I3qU5UN1FWq3tDPobkmjXFAQ8VyxxiS1MyubnVA/formResponse";
     const checklists = {
       daily: [
         ["Are all escape routes clear and unobstructed?", "No blockages or locked doors along escape routes."],
@@ -116,14 +117,15 @@
       form.className = type === "daily" ? "active" : "";
 
       form.innerHTML += `<h2>${type[0].toUpperCase() + type.slice(1)} Checklist</h2>`;
-      form.innerHTML += `<label>Building<select><option>Unit 4</option><option>Unit 6</option></select></label>`;
-      form.innerHTML += `<label>Check Completed By<input type="text"></label>`;
+      form.innerHTML += `<label>Building<select name="entry.2109717779"><option>Unit 4</option><option>Unit 6</option></select></label>`;
+      form.innerHTML += `<label>Check Completed By<input type="text" name="entry.662048742"></label>`;
+      form.innerHTML += `<input type="hidden" name="entry.873225110" value="${type}">`; // Form Type
 
       checklists[type].forEach(([question, tip]) => {
         const id = question.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
         form.innerHTML += `
           <label>${question} <span class="tooltip" data-tip="${tip}">?</span>
-            <select class="question" data-id="${id}">
+            <select class="question" data-id="${id}" data-entry="entry.${Math.random().toString(36).substr(2, 9)}">
               <option value="-">-</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
@@ -140,9 +142,28 @@
 
       form.onsubmit = e => {
         e.preventDefault();
-        alert("✅ Submission captured (not saved). Ready for future storage.");
-        form.reset();
-        form.querySelectorAll('.note-section').forEach(n => n.style.display = 'none');
+        const formData = new FormData();
+        formData.append("entry.873225110", type); // Form Type
+        formData.append("entry.2109717779", form.querySelector("select").value); // Building
+        formData.append("entry.662048742", form.querySelector("input[type='text']").value); // Completed By
+
+        const selects = form.querySelectorAll("select.question");
+        selects.forEach(sel => {
+          const entryId = sel.getAttribute("data-entry");
+          if (entryId) formData.append(entryId, sel.value);
+        });
+
+        fetch(GOOGLE_FORM_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        }).then(() => {
+          alert("✅ Submitted to Google Sheets!");
+          form.reset();
+          form.querySelectorAll(".note-section").forEach(n => n.style.display = "none");
+        }).catch(() => {
+          alert("❌ Submission failed.");
+        });
       };
 
       container.appendChild(form);
