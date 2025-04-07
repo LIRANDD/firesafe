@@ -86,8 +86,8 @@
     <button data-target="monthly">Monthly</button>
     <button data-target="annual">Annual</button>
   </nav>
-<form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev//">
-<!-- <form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev" target="hidden_iframe" onsubmit="return handleSubmit();"> -->
+
+<form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev" target="hidden_iframe" onsubmit="return handleSubmit();">
   <input type="hidden" name="type" id="checklistType" value="daily">
 
     
@@ -491,7 +491,34 @@
       });
     });
   </script>
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
+  <script>
+    document.getElementById("mainForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData();
+
+      // Append the checklist type
+      formData.append("type", document.getElementById("checklistType").value);
+
+      // Include all visible inputs from the active checklist
+      const active = form.querySelector(".checklist.active");
+      active.querySelectorAll("select, textarea, input[type='text']").forEach(el => {
+        if (el.name) formData.append(el.name, el.value);
+      });
+
+      fetch("https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        document.getElementById("confirmationMessage").style.display = "block";
+        form.reset();
+        form.querySelectorAll(".note-section").forEach(n => n.style.display = "none");
+      }).catch(() => {
+        alert("❌ Submission failed.");
+      });
+    });
+  </script>
 </body>
 </html>
 
