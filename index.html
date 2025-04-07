@@ -121,11 +121,12 @@
       form.innerHTML += `<label>Check Completed By<input type="text" name="entry.662048742"></label>`;
       form.innerHTML += `<input type="hidden" name="entry.873225110" value="${type}">`; // Form Type
 
-      checklists[type].forEach(([question, tip]) => {
+      checklists[type].forEach(([question, tip], index) => {
         const id = question.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+        const entryId = type === "daily" ? ["entry.193526870", "entry.861115832", "entry.1467061489", "entry.1633804769", "entry.914817658", "entry.856628037", "entry.1950545831"][index] : `entry.${Math.random().toString(36).substr(2, 9)}`;
         form.innerHTML += `
           <label>${question} <span class="tooltip" data-tip="${tip}">?</span>
-            <select class="question" data-id="${id}" data-entry="entry.${Math.random().toString(36).substr(2, 9)}">
+            <select class="question" data-id="${id}" data-entry="${entryId}">
               <option value="-">-</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
