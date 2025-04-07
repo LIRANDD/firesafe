@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fire Safety Checklists</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 1rem; }
-    header { background: #007BFF; color: white; padding: 1rem; text-align: center; margin-bottom: 1rem; }
-    nav { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 2rem; margin: 0; }
+    header { background: #007BFF; color: white; padding: 1rem; text-align: center; margin: -2rem -2rem 2rem -2rem; }
+    nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
     nav button { padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; background: #e0e0e0; }
     nav button.active { background: #007BFF; color: white; }
-    form { display: none; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    form { display: none; max-width: 800px; margin: auto; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
     form.active { display: block; }
-    label { display: block; margin-top: 1rem; font-weight: bold; }
+    label { display: block; margin-top: 1.5rem; font-weight: bold; position: relative; }
     select, textarea, input[type="text"], input[type="file"] {
       width: 100%; padding: 0.5rem; margin-top: 0.3rem; border: 1px solid #ccc; border-radius: 4px;
     }
@@ -21,13 +21,14 @@
       display: inline-block;
       background: #ccc;
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       text-align: center;
-      line-height: 18px;
+      line-height: 22px;
       font-weight: bold;
-      margin-left: 5px;
+      margin-left: 10px;
       cursor: pointer;
+      position: relative;
     }
     .tooltip:hover::after {
       content: attr(data-tip);
@@ -39,142 +40,133 @@
       position: absolute;
       z-index: 100;
       max-width: 300px;
-      margin-top: 5px;
+      top: 26px;
+      left: 0;
+    }
+    @media (max-width: 600px) {
+      label { margin-top: 2rem; }
+      .tooltip { margin-left: 12px; width: 28px; height: 28px; line-height: 28px; font-size: 14px; }
     }
     button[type="submit"] {
-      margin-top: 1rem; padding: 0.5rem 1rem;
-      background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;
+      margin-top: 2rem;
+      background: #007BFF;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
   <header><h1>Fire Safety Checklists</h1></header>
-
   <nav>
     <button data-target="daily" class="active">Daily</button>
     <button data-target="weekly">Weekly</button>
     <button data-target="monthly">Monthly</button>
     <button data-target="annual">Annual</button>
   </nav>
-
   <div id="forms"></div>
-
   <script>
     const checklists = {
-      daily: {
-        title: "Daily Checklist",
-        questions: [
-          ["All escape routes are clear and unobstructed", "No obstructions or locked paths in hallways or exits"],
-          ["Fire exits are unlocked and clearly marked", "Ensure doors can be opened and signage is visible"],
-          ["Fire doors are closed and in good condition", "Check that they are not wedged open and shut properly"],
-          ["Fire alarm panel shows no faults", "Should display 'System Normal' or similar"],
-          ["No obvious fire hazards (e.g. exposed wires, clutter)", "Look for blocked vents, overloading sockets, exposed wires"],
-          ["Fire extinguishers are visible and unobstructed", "They must be mounted and accessible"],
-          ["Good housekeeping maintained", "No build-up of waste or flammable materials"]
-        ]
-      },
-      weekly: {
-        title: "Weekly Checklist",
-        questions: [
-          ["Test fire alarm system", "Test alarm and ensure all bells/sirens activate"],
-          ["Check call points (accessible and not damaged)", "Call points should be reachable and undamaged"],
-          ["Check emergency lighting functions", "Ensure emergency lights illuminate when tested"],
-          ["Inspect fire extinguishers", "No visible damage, correct pressure, tags in place"],
-          ["Exit signage is clean and visible", "Ensure all exit signs are legible and lit"],
-          ["Ensure firefighting equipment is not blocked", "No obstructions to hoses/extinguishers"],
-          ["Review weekly issues log", "Ensure past issues have been resolved"]
-        ]
-      },
-      monthly: {
-        title: "Monthly Checklist",
-        questions: [
-          ["Emergency lighting duration test", "Lights must remain on for test duration (1-3 mins)"],
-          ["Inspect all fire doors", "Ensure they close and seal properly, no damage"],
-          ["Check condition and signage of escape routes", "Corridors must be clear and signs visible"],
-          ["Check for accumulation of combustibles", "No excessive stockpiling of paper, boxes etc."],
-          ["Verify fire action notices are displayed", "Check that notices are legible and at exits"],
-          ["Confirm access to fire alarm panel", "Panel must be accessible and operational"],
-          ["Log and follow up on any reported issues", "Ensure prior issues have been tracked"]
-        ]
-      },
-      annual: {
-        title: "Annual Checklist",
-        questions: [
-          ["Full fire alarm system service and certification", "Certified contractor must service the system"],
-          ["Full emergency lighting duration test", "Battery must last 3 hours under test"],
-          ["Fire extinguishers inspected and serviced", "All tags should be up to date, tested"],
-          ["Fire risk assessment reviewed and updated", "Assessment must reflect current setup and hazards"],
-          ["Fire evacuation drill conducted and documented", "Ensure full participation and feedback"],
-          ["Fire warden training reviewed or renewed", "Wardens should be trained and aware of roles"],
-          ["PEEPs (Personal Emergency Evacuation Plans) reviewed", "Plans must be up-to-date for those with mobility needs"],
-          ["Fixed fire suppression systems serviced", "E.g., sprinkler/gas suppression tested"],
-          ["Review fire safety policy and procedures", "Update policies to reflect recent changes"]
-        ]
-      }
+      daily: [
+        ["Are all escape routes clear and unobstructed?", "No blockages or locked doors along escape routes."],
+        ["Are fire exits unlocked and clearly marked?", "Exit signs must be visible and doors easily openable."],
+        ["Are all fire doors closed and in good condition?", "Check seals, hinges, and self-closing mechanisms."],
+        ["Is the fire alarm panel showing no faults?", "Panel should show 'System Normal' or equivalent."],
+        ["Are there no obvious fire hazards?", "No exposed wires, flammable clutter, or blocked vents."],
+        ["Are fire extinguishers visible and unobstructed?", "Extinguishers must be mounted, labeled, and accessible."],
+        ["Is good housekeeping maintained?", "General tidiness and waste control in workspaces."]
+      ],
+      weekly: [
+        ["Has the fire alarm system been tested?", "Test and confirm alarms are working."],
+        ["Are all call points accessible and free from damage?", "Visual inspection of call point covers and reachability."],
+        ["Is the emergency lighting functioning properly?", "Perform function test on emergency lighting."],
+        ["Are fire extinguishers intact and in place?", "Check gauges and physical placement."],
+        ["Are all exit signs clean and visible?", "Ensure signs are illuminated and legible."],
+        ["Is firefighting equipment unobstructed?", "No storage blocking extinguishers or hoses."],
+        ["Has the weekly issues log been reviewed?", "Ensure all issues are checked off or escalated."]
+      ],
+      monthly: [
+        ["Was the emergency lighting duration test completed?", "Perform monthly light test for correct operation."],
+        ["Have all fire doors been inspected?", "Confirm no warping, gaps, or broken seals."],
+        ["Are all escape route signs present and legible?", "Every exit path should have adequate signage."],
+        ["Is there no build-up of combustible materials?", "Storage areas must be kept free of excess flammables."],
+        ["Are fire action notices displayed clearly?", "Check by exits, break rooms, and key locations."],
+        ["Is the fire alarm panel accessible?", "Nothing should be blocking physical access to the panel."],
+        ["Have all reported issues been logged and followed up?", "Issues from all previous reports addressed or escalated."]
+      ],
+      annual: [
+        ["Has the fire alarm system been serviced and certified?", "Conducted by certified fire alarm engineer."],
+        ["Was the full emergency lighting test completed?", "Full discharge test over 3-hour duration."],
+        ["Have all fire extinguishers been inspected and serviced?", "Annual tag inspection and recharge if required."],
+        ["Has the fire risk assessment been reviewed and updated?", "Review significant findings and updates."],
+        ["Was a fire evacuation drill conducted and documented?", "Drill log completed and participants recorded."],
+        ["Has fire warden training been reviewed or renewed?", "Warden refresher courses completed."],
+        ["Have all PEEPs been reviewed and updated?", "Review Personal Emergency Evacuation Plans annually."],
+        ["Have fixed fire suppression systems been serviced?", "Includes sprinklers, dry risers, gas suppression systems."],
+        ["Has the fire safety policy and procedure been reviewed?", "Annual management review and sign-off."]
+      ]
     };
 
-    const formsContainer = document.getElementById("forms");
-
-    for (const key in checklists) {
+    const container = document.getElementById("forms");
+    Object.keys(checklists).forEach(type => {
       const form = document.createElement("form");
-      form.id = key;
-      form.className = key === "daily" ? "active" : "";
+      form.id = type;
+      form.className = type === "daily" ? "active" : "";
 
-      const heading = document.createElement("h2");
-      heading.textContent = checklists[key].title;
-      form.appendChild(heading);
+      form.innerHTML += `<h2>${type[0].toUpperCase() + type.slice(1)} Checklist</h2>`;
+      form.innerHTML += `<label>Building<select><option>Unit 4</option><option>Unit 6</option></select></label>`;
+      form.innerHTML += `<label>Check Completed By<input type="text"></label>`;
 
-      const buildingLabel = document.createElement("label");
-      buildingLabel.innerHTML = `Building<select><option>Unit 4</option><option>Unit 6</option></select>`;
-      form.appendChild(buildingLabel);
-
-      checklists[key].questions.forEach(([question, tip]) => {
-        const label = document.createElement("label");
-        const id = question.toLowerCase().replace(/\s+/g, '-');
-        label.innerHTML = `${question} <span class="tooltip" data-tip="${tip}">?</span>
-          <select class="question"><option>Yes</option><option>No</option></select>
-          <div class="note-section">
-            <label>Notes</label><textarea></textarea>
-            <label>Upload Image</label><input type="file">
-          </div>`;
-        form.appendChild(label);
+      checklists[type].forEach(([question, tip]) => {
+        const id = question.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+        form.innerHTML += `
+          <label>${question} <span class="tooltip" data-tip="${tip}">?</span>
+            <select class="question" data-id="${id}">
+              <option value="-">-</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <div class="note-section" id="notes-${id}">
+              <label>Notes</label><textarea></textarea>
+              <label>Upload Image</label><input type="file">
+            </div>
+          </label>`;
       });
 
-      const completedLabel = document.createElement("label");
-      completedLabel.innerHTML = `Check Completed By<input type="text" placeholder="Your Name">`;
-      form.appendChild(completedLabel);
+      form.innerHTML += `<label>General Notes<textarea></textarea></label>`;
+      form.innerHTML += `<button type="submit">Submit</button>`;
 
-      const submit = document.createElement("button");
-      submit.type = "submit";
-      submit.textContent = "Submit";
-      form.appendChild(submit);
-
-      formsContainer.appendChild(form);
-    }
-
-    document.querySelectorAll('nav button').forEach(button => {
-      button.addEventListener('click', () => {
-        const target = button.getAttribute('data-target');
-        document.querySelectorAll('form').forEach(form => form.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
-        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-      });
-    });
-
-    document.addEventListener('change', (e) => {
-      if (e.target.classList.contains('question')) {
-        const note = e.target.nextElementSibling;
-        note.style.display = e.target.value === 'No' ? 'block' : 'none';
-      }
-    });
-
-    document.querySelectorAll('form').forEach(form => {
-      form.addEventListener('submit', e => {
+      form.onsubmit = e => {
         e.preventDefault();
-        alert('Checklist submitted!');
-      });
+        alert("✅ Submission captured (not saved). Ready for future storage.");
+        form.reset();
+        form.querySelectorAll('.note-section').forEach(n => n.style.display = 'none');
+      };
+
+      container.appendChild(form);
+    });
+
+    document.querySelectorAll("nav button").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll("form").forEach(f => f.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      };
+    });
+
+    document.addEventListener("change", (e) => {
+      if (e.target.classList.contains("question")) {
+        const id = e.target.getAttribute("data-id");
+        const notes = document.getElementById("notes-" + id);
+        if (e.target.value === "No") {
+          notes.style.display = "block";
+        } else {
+          notes.style.display = "none";
+        }
+      }
     });
   </script>
 </body>
