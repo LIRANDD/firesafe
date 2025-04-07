@@ -44,6 +44,38 @@
       border: 1px solid #f5c6cb;
       border-radius: 5px;
     }
+    .tooltip {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background: #ccc;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  top: 125%;
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: pre-line;
+  display: none;
+  z-index: 100;
+  max-width: 250px;
+}
+
+.tooltip:hover::after {
+  display: block;
+}
   </style>
 </head>
 <body>
