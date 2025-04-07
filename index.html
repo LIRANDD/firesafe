@@ -87,7 +87,7 @@
     <button data-target="annual">Annual</button>
   </nav>
 
-<form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev" target="hidden_iframe" onsubmit="return handleSubmit();">
+<form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbyWACGHt0VF9CTTFcm6lN2EXAaapKaxq-udBp9I1W6aI7PGNzQrVGUC75JCVMBoII7Y/exec" target="hidden_iframe" onsubmit="return handleSubmit();">
   <input type="hidden" name="type" id="checklistType" value="daily">
 
     
@@ -506,7 +506,7 @@
         if (el.name) formData.append(el.name, el.value);
       });
 
-      fetch("https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev", {
+      fetch("https://script.google.com/macros/s/AKfycbyWACGHt0VF9CTTFcm6lN2EXAaapKaxq-udBp9I1W6aI7PGNzQrVGUC75JCVMBoII7Y/exec", {
         method: "POST",
         mode: "no-cors",
         body: formData
