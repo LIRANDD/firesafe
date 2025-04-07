@@ -152,20 +152,13 @@
 
       form.onsubmit = e => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("entry.873225110", type); // Form Type
-        formData.append("entry.2109717779", form.querySelector("select").value); // Building
-        formData.append("entry.662048742", form.querySelector("input[type='text']").value); // Completed By
-
-        const selects = form.querySelectorAll("select.question");
-        selects.forEach(sel => {
-          const entryId = sel.getAttribute("data-entry");
-          if (entryId) formData.append(entryId, sel.value);
-        });
-
+        const formData = new URLSearchParams(new FormData(form));
         fetch(GOOGLE_FORM_URL, {
           method: "POST",
           mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
           body: formData
         }).then(() => {
           alert("✅ Submitted to Google Sheets!");
