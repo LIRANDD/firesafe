@@ -35,6 +35,15 @@
       border: 1px solid #c3e6cb;
       border-radius: 5px;
     }
+    .note-section {
+      display: none;
+      margin-top: 1rem;
+      background: #f8d7da;
+      color: #721c24;
+      padding: 1rem;
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -49,31 +58,107 @@
     <input type="hidden" name="type" id="checklistType" value="daily">
     
     <div id="daily" class="checklist active">
-      <label for="daily-1">Daily Checklist Item 1:</label>
-      <input type="text" id="daily-1" name="daily-1" required>
-      <label for="daily-2">Daily Checklist Item 2:</label>
-      <input type="text" id="daily-2" name="daily-2" required>
+      <label for="daily-q1">Did you check the smoke alarms?</label>
+      <select id="daily-q1" name="daily-q1" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Make sure to test the alarms monthly.</span>
+      <div class="note-section" id="note-daily-q1">
+        <label for="note-daily-q1-input">Please provide details:</label>
+        <textarea id="note-daily-q1-input" name="note-daily-q1"></textarea>
+      </div>
+
+      <label for="daily-q2">Did you check the fire extinguishers?</label>
+      <select id="daily-q2" name="daily-q2" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Ensure extinguishers are accessible and charged.</span>
+      <div class="note-section" id="note-daily-q2">
+        <label for="note-daily-q2-input">Please provide details:</label>
+        <textarea id="note-daily-q2-input" name="note-daily-q2"></textarea>
+      </div>
     </div>
 
     <div id="weekly" class="checklist">
-      <label for="weekly-1">Weekly Checklist Item 1:</label>
-      <input type="text" id="weekly-1" name="weekly-1">
-      <label for="weekly-2">Weekly Checklist Item 2:</label>
-      <input type="text" id="weekly-2" name="weekly-2">
+      <label for="weekly-q1">Did you inspect the fire exits?</label>
+      <select id="weekly-q1" name="weekly-q1">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Check that exits are clear and marked.</span>
+      <div class="note-section" id="note-weekly-q1">
+        <label for="note-weekly-q1-input">Please provide details:</label>
+        <textarea id="note-weekly-q1-input" name="note-weekly-q1"></textarea>
+      </div>
+
+      <label for="weekly-q2">Did you review the fire safety plan?</label>
+      <select id="weekly-q2" name="weekly-q2">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Ensure everyone knows the procedures.</span>
+      <div class="note-section" id="note-weekly-q2">
+        <label for="note-weekly-q2-input">Please provide details:</label>
+        <textarea id="note-weekly-q2-input" name="note-weekly-q2"></textarea>
+      </div>
     </div>
 
     <div id="monthly" class="checklist">
-      <label for="monthly-1">Monthly Checklist Item 1:</label>
-      <input type="text" id="monthly-1" name="monthly-1">
-      <label for="monthly-2">Monthly Checklist Item 2:</label>
-      <input type="text" id="monthly-2" name="monthly-2">
+      <label for="monthly-q1">Did you conduct a fire drill?</label>
+      <select id="monthly-q1" name="monthly-q1">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Practice can save lives.</span>
+      <div class="note-section" id="note-monthly-q1">
+        <label for="note-monthly-q1-input">Please provide details:</label>
+        <textarea id="note-monthly-q1-input" name="note-monthly-q1"></textarea>
+      </div>
+
+      <label for="monthly-q2">Did you check emergency lighting?</label>
+      <select id="monthly-q2" name="monthly-q2">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Ensure they are functional and charged.</span>
+      <div class="note-section" id="note-monthly-q2">
+        <label for="note-monthly-q2-input">Please provide details:</label>
+        <textarea id="note-monthly-q2-input" name="note-monthly-q2"></textarea>
+      </div>
     </div>
 
     <div id="annual" class="checklist">
-      <label for="annual-1">Annual Checklist Item 1:</label>
-      <input type="text" id="annual-1" name="annual-1">
-      <label for="annual-2">Annual Checklist Item 2:</label>
-      <input type="text" id="annual-2" name="annual-2">
+      <label for="annual-q1">Did you have a professional inspection?</label>
+      <select id="annual-q1" name="annual-q1">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Annual inspections are crucial for safety.</span>
+      <div class="note-section" id="note-annual-q1">
+        <label for="note-annual-q1-input">Please provide details:</label>
+        <textarea id="note-annual-q1-input" name="note-annual-q1"></textarea>
+      </div>
+
+      <label for="annual-q2">Did you update your emergency contacts?</label>
+      <select id="annual-q2" name="annual-q2">
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <span class="tooltip">Keep your contacts current.</span>
+      <div class="note-section" id="note-annual-q2">
+        <label for="note-annual-q2-input">Please provide details:</label>
+        <textarea id="note-annual-q2-input" name="note-annual-q2"></textarea>
+      </div>
     </div>
 
     <button type="submit">Submit</button>
@@ -96,13 +181,24 @@
     document.getElementById("mainForm").addEventListener("submit", () => {
       document.querySelectorAll(".checklist").forEach(section => {
         const isActive = section.classList.contains("active");
-        section.querySelectorAll("input").forEach(input => {
+        section.querySelectorAll("select").forEach(select => {
           if (isActive) {
-            input.setAttribute("required", "required");
+            select.setAttribute("required", "required");
           } else {
-            input.removeAttribute("required");
+            select.removeAttribute("required");
           }
         });
+      });
+    });
+
+    document.querySelectorAll("select").forEach(select => {
+      select.addEventListener("change", function() {
+        const noteSection = document.getElementById("note-" + this.name);
+        if (this.value === "No") {
+          noteSection.style.display = "block";
+        } else {
+          noteSection.style.display = "none";
+        }
       });
     });
   </script>
