@@ -76,31 +76,11 @@
     <button data-target="annual">Annual</button>
   </nav>
   <div id="forms">
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdXa9qlUO8I3qU5UN1FWq3tDPobkmjXFAQ8VyxxiS1MyubnVA/formResponse" method="POST" target="hidden_iframe" id="daily" class="active">
-      <h2>Daily Checklist</h2>
-      <label>Building<select name="entry.2109717779"><option>Unit 4</option><option>Unit 6</option></select></label>
-      <label>Check Completed By<input type="text" name="entry.662048742"></label>
-      <input type="hidden" name="entry.873225110" value="daily"> <!-- Form Type -->
-
-      <label>Are all escape routes clear and unobstructed? <span class="tooltip" data-tip="No blockages or locked doors along escape routes.">?</span>
-        <select class="question" data-id="are-all-escape-routes-clear-and-unobstructed" name="entry.193526870">
-          <option value="-">-</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        <div class="note-section" id="notes-are-all-escape-routes-clear-and-unobstructed">
-          <label>Notes</label><textarea></textarea>
-          <label>Upload Image</label><input type="file">
-        </div>
-      </label>
-      <!-- Repeat similar blocks for other questions -->
-      
-      <label>General Notes<textarea></textarea></label>
-      <button type="submit">Submit</button>
-      <div class="confirmation" id="confirmation">✅ Submitted to Google Sheets!</div>
-    </form>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXa9qlUO8I3qU5UN1FWq3tDPobkmjXFAQ8VyxxiS1MyubnVA/viewform?embedded=true"
+            width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0">
+      Loading…
+    </iframe>
   </div>
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
   <script>
     document.querySelectorAll("nav button").forEach(btn => {
       btn.onclick = () => {
@@ -109,18 +89,6 @@
         document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
       };
-    });
-
-    document.addEventListener("change", (e) => {
-      if (e.target.classList.contains("question")) {
-        const id = e.target.getAttribute("data-id");
-        const notes = document.getElementById("notes-" + id);
-        if (e.target.value === "No") {
-          notes.style.display = "block";
-        } else {
-          notes.style.display = "none";
-        }
-      }
     });
   </script>
 </body>
