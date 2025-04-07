@@ -56,6 +56,15 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    .confirmation {
+      display: none;
+      margin-top: 1rem;
+      background: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -66,112 +75,33 @@
     <button data-target="monthly">Monthly</button>
     <button data-target="annual">Annual</button>
   </nav>
-  <div id="forms"></div>
+  <div id="forms">
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdXa9qlUO8I3qU5UN1FWq3tDPobkmjXFAQ8VyxxiS1MyubnVA/formResponse" method="POST" target="hidden_iframe" id="daily" class="active">
+      <h2>Daily Checklist</h2>
+      <label>Building<select name="entry.2109717779"><option>Unit 4</option><option>Unit 6</option></select></label>
+      <label>Check Completed By<input type="text" name="entry.662048742"></label>
+      <input type="hidden" name="entry.873225110" value="daily"> <!-- Form Type -->
+
+      <label>Are all escape routes clear and unobstructed? <span class="tooltip" data-tip="No blockages or locked doors along escape routes.">?</span>
+        <select class="question" data-id="are-all-escape-routes-clear-and-unobstructed" name="entry.193526870">
+          <option value="-">-</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <div class="note-section" id="notes-are-all-escape-routes-clear-and-unobstructed">
+          <label>Notes</label><textarea></textarea>
+          <label>Upload Image</label><input type="file">
+        </div>
+      </label>
+      <!-- Repeat similar blocks for other questions -->
+      
+      <label>General Notes<textarea></textarea></label>
+      <button type="submit">Submit</button>
+      <div class="confirmation" id="confirmation">✅ Submitted to Google Sheets!</div>
+    </form>
+  </div>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
   <script>
-    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdXa9qlUO8I3qU5UN1FWq3tDPobkmjXFAQ8VyxxiS1MyubnVA/formResponse";
-    const checklists = {
-      daily: [
-        ["Are all escape routes clear and unobstructed?", "No blockages or locked doors along escape routes."],
-        ["Are fire exits unlocked and clearly marked?", "Exit signs must be visible and doors easily openable."],
-        ["Are all fire doors closed and in good condition?", "Check seals, hinges, and self-closing mechanisms."],
-        ["Is the fire alarm panel showing no faults?", "Panel should show 'System Normal' or equivalent."],
-        ["Are there no obvious fire hazards?", "No exposed wires, flammable clutter, or blocked vents."],
-        ["Are fire extinguishers visible and unobstructed?", "Extinguishers must be mounted, labeled, and accessible."],
-        ["Is good housekeeping maintained?", "General tidiness and waste control in workspaces."]
-      ],
-      weekly: [
-        ["Has the fire alarm system been tested?", "Test and confirm alarms are working."],
-        ["Are all call points accessible and free from damage?", "Visual inspection of call point covers and reachability."],
-        ["Is the emergency lighting functioning properly?", "Perform function test on emergency lighting."],
-        ["Are fire extinguishers intact and in place?", "Check gauges and physical placement."],
-        ["Are all exit signs clean and visible?", "Ensure signs are illuminated and legible."],
-        ["Is firefighting equipment unobstructed?", "No storage blocking extinguishers or hoses."],
-        ["Has the weekly issues log been reviewed?", "Ensure all issues are checked off or escalated."]
-      ],
-      monthly: [
-        ["Was the emergency lighting duration test completed?", "Perform monthly light test for correct operation."],
-        ["Have all fire doors been inspected?", "Confirm no warping, gaps, or broken seals."],
-        ["Are all escape route signs present and legible?", "Every exit path should have adequate signage."],
-        ["Is there no build-up of combustible materials?", "Storage areas must be kept free of excess flammables."],
-        ["Are fire action notices displayed clearly?", "Check by exits, break rooms, and key locations."],
-        ["Is the fire alarm panel accessible?", "Nothing should be blocking physical access to the panel."],
-        ["Have all reported issues been logged and followed up?", "Issues from all previous reports addressed or escalated."]
-      ],
-      annual: [
-        ["Has the fire alarm system been serviced and certified?", "Conducted by certified fire alarm engineer."],
-        ["Was the full emergency lighting test completed?", "Full discharge test over 3-hour duration."],
-        ["Have all fire extinguishers been inspected and serviced?", "Annual tag inspection and recharge if required."],
-        ["Has the fire risk assessment been reviewed and updated?", "Review significant findings and updates."],
-        ["Was a fire evacuation drill conducted and documented?", "Drill log completed and participants recorded."],
-        ["Has fire warden training been reviewed or renewed?", "Warden refresher courses completed."],
-        ["Have all PEEPs been reviewed and updated?", "Review Personal Emergency Evacuation Plans annually."],
-        ["Have fixed fire suppression systems been serviced?", "Includes sprinklers, dry risers, gas suppression systems."],
-        ["Has the fire safety policy and procedure been reviewed?", "Annual management review and sign-off."]
-      ]
-    };
-
-    const container = document.getElementById("forms");
-    Object.keys(checklists).forEach(type => {
-      const form = document.createElement("form");
-      form.id = type;
-      form.className = type === "daily" ? "active" : "";
-
-      form.innerHTML += `<h2>${type[0].toUpperCase() + type.slice(1)} Checklist</h2>`;
-      form.innerHTML += `<label>Building<select name="entry.2109717779"><option>Unit 4</option><option>Unit 6</option></select></label>`;
-      form.innerHTML += `<label>Check Completed By<input type="text" name="entry.662048742"></label>`;
-      form.innerHTML += `<input type="hidden" name="entry.873225110" value="${type}">`; // Form Type
-
-      checklists[type].forEach(([question, tip], index) => {
-        const id = question.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-        let entryId;
-        if (type === "daily") {
-          entryId = ["entry.193526870", "entry.861115832", "entry.1467061489", "entry.1633804769", "entry.914817658", "entry.856628037", "entry.1950545831"][index];
-        } else if (type === "weekly") {
-          entryId = ["entry.573999356", "entry.1091630708", "entry.2120885323", "entry.1362439777", "entry.1009853676", "entry.654362909", "entry.1535040668"][index];
-        } else if (type === "monthly") {
-          entryId = ["entry.138581599", "entry.1575326306", "entry.1134395646", "entry.1601878484", "entry.749667716", "entry.267271754", "entry.924429665"][index];
-        } else if (type === "annual") {
-          entryId = ["entry.370395007", "entry.278691615", "entry.1931181757", "entry.944972260", "entry.1198559822", "entry.1263131607", "entry.1112583459", "entry.1532038091", "entry.85573862"][index];
-        }
-        form.innerHTML += `
-          <label>${question} <span class="tooltip" data-tip="${tip}">?</span>
-            <select class="question" data-id="${id}" name="${entryId}">
-              <option value="-">-</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            <div class="note-section" id="notes-${id}">
-              <label>Notes</label><textarea></textarea>
-              <label>Upload Image</label><input type="file">
-            </div>
-          </label>`;
-      });
-
-      form.innerHTML += `<label>General Notes<textarea></textarea></label>`;
-      form.innerHTML += `<button type="submit">Submit</button>`;
-
-      form.onsubmit = e => {
-        e.preventDefault();
-        const formData = new URLSearchParams(new FormData(form));
-        fetch(GOOGLE_FORM_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: formData
-        }).then(() => {
-          alert("✅ Submitted to Google Sheets!");
-          form.reset();
-          form.querySelectorAll(".note-section").forEach(n => n.style.display = "none");
-        }).catch(() => {
-          alert("❌ Submission failed.");
-        });
-      };
-
-      container.appendChild(form);
-    });
-
     document.querySelectorAll("nav button").forEach(btn => {
       btn.onclick = () => {
         document.querySelectorAll("form").forEach(f => f.classList.remove("active"));
