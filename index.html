@@ -57,23 +57,23 @@
 
     <div id="weekly" class="checklist">
       <label for="weekly-1">Weekly Checklist Item 1:</label>
-      <input type="text" id="weekly-1" name="weekly-1" required>
+      <input type="text" id="weekly-1" name="weekly-1">
       <label for="weekly-2">Weekly Checklist Item 2:</label>
-      <input type="text" id="weekly-2" name="weekly-2" required>
+      <input type="text" id="weekly-2" name="weekly-2">
     </div>
 
     <div id="monthly" class="checklist">
       <label for="monthly-1">Monthly Checklist Item 1:</label>
-      <input type="text" id="monthly-1" name="monthly-1" required>
+      <input type="text" id="monthly-1" name="monthly-1">
       <label for="monthly-2">Monthly Checklist Item 2:</label>
-      <input type="text" id="monthly-2" name="monthly-2" required>
+      <input type="text" id="monthly-2" name="monthly-2">
     </div>
 
     <div id="annual" class="checklist">
       <label for="annual-1">Annual Checklist Item 1:</label>
-      <input type="text" id="annual-1" name="annual-1" required>
+      <input type="text" id="annual-1" name="annual-1">
       <label for="annual-2">Annual Checklist Item 2:</label>
-      <input type="text" id="annual-2" name="annual-2" required>
+      <input type="text" id="annual-2" name="annual-2">
     </div>
 
     <button type="submit">Submit</button>
@@ -91,6 +91,19 @@
         document.getElementById(target).classList.add("active");
         document.getElementById("checklistType").value = target;
       };
+    });
+
+    document.getElementById("mainForm").addEventListener("submit", () => {
+      document.querySelectorAll(".checklist").forEach(section => {
+        const isActive = section.classList.contains("active");
+        section.querySelectorAll("input").forEach(input => {
+          if (isActive) {
+            input.setAttribute("required", "required");
+          } else {
+            input.removeAttribute("required");
+          }
+        });
+      });
     });
   </script>
 </body>
