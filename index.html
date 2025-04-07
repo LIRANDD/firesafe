@@ -123,7 +123,16 @@
 
       checklists[type].forEach(([question, tip], index) => {
         const id = question.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-        const entryId = type === "daily" ? ["entry.193526870", "entry.861115832", "entry.1467061489", "entry.1633804769", "entry.914817658", "entry.856628037", "entry.1950545831"][index] : `entry.${Math.random().toString(36).substr(2, 9)}`;
+        let entryId;
+        if (type === "daily") {
+          entryId = ["entry.193526870", "entry.861115832", "entry.1467061489", "entry.1633804769", "entry.914817658", "entry.856628037", "entry.1950545831"][index];
+        } else if (type === "weekly") {
+          entryId = ["entry.573999356", "entry.1091630708", "entry.2120885323", "entry.1362439777", "entry.1009853676", "entry.654362909", "entry.1535040668"][index];
+        } else if (type === "monthly") {
+          entryId = ["entry.138581599", "entry.1575326306", "entry.1134395646", "entry.1601878484", "entry.749667716", "entry.267271754", "entry.924429665"][index];
+        } else if (type === "annual") {
+          entryId = ["entry.370395007", "entry.278691615", "entry.1931181757", "entry.944972260", "entry.1198559822", "entry.1263131607", "entry.1112583459", "entry.1532038091", "entry.85573862"][index];
+        }
         form.innerHTML += `
           <label>${question} <span class="tooltip" data-tip="${tip}">?</span>
             <select class="question" data-id="${id}" data-entry="${entryId}">
