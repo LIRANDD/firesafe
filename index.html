@@ -10,42 +10,12 @@
     nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
     nav button { padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; background: #e0e0e0; }
     nav button.active { background: #007BFF; color: white; }
-    form { display: none; max-width: 800px; margin: auto; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
-    form.active { display: block; }
+    form { max-width: 800px; margin: auto; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    .checklist { display: none; }
+    .checklist.active { display: block; }
     label { display: block; margin-top: 1.5rem; font-weight: bold; position: relative; }
     select, textarea, input[type="text"], input[type="file"] {
       width: 100%; padding: 0.5rem; margin-top: 0.3rem; border: 1px solid #ccc; border-radius: 4px;
-    }
-    .note-section { display: none; margin-top: 0.5rem; }
-    .tooltip {
-      display: inline-block;
-      background: #ccc;
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      text-align: center;
-      line-height: 22px;
-      font-weight: bold;
-      margin-left: 10px;
-      cursor: pointer;
-      position: relative;
-    }
-    .tooltip:hover::after {
-      content: attr(data-tip);
-      display: block;
-      background: #333;
-      color: #fff;
-      padding: 6px;
-      border-radius: 4px;
-      position: absolute;
-      z-index: 100;
-      max-width: 300px;
-      top: 26px;
-      left: 0;
-    }
-    @media (max-width: 600px) {
-      label { margin-top: 2rem; }
-      .tooltip { margin-left: 12px; width: 28px; height: 28px; line-height: 28px; font-size: 14px; }
     }
     button[type="submit"] {
       margin-top: 2rem;
@@ -75,24 +45,51 @@
     <button data-target="monthly">Monthly</button>
     <button data-target="annual">Annual</button>
   </nav>
-  <div id="forms">
-    <iframe id="formFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSdTWTdsryXWNWKuS6Fqm0uz-H91fZkQGF0EfPJEsGEzpXOQgg/viewform?embedded=true"
-            width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0">
-      Loading…
-    </iframe>
-  </div>
-  <script>
-    const formSrcBaseMap = {
-      daily: "https://docs.google.com/forms/d/e/1FAIpQLSdTWTdsryXWNWKuS6Fqm0uz-H91fZkQGF0EfPJEsGEzpXOQgg/viewform?embedded=true"
-    };
-    const iframe = document.getElementById("formFrame");
+  <form id="mainForm" method="POST" action="https://script.google.com/macros/s/AKfycbzjttByaZlKYRmhGbzouVgYZTGU95IFIYVvei6E-ao/dev">
+    <input type="hidden" name="type" id="checklistType" value="daily">
+    
+    <div id="daily" class="checklist active">
+      <label for="daily-1">Daily Checklist Item 1:</label>
+      <input type="text" id="daily-1" name="daily-1" required>
+      <label for="daily-2">Daily Checklist Item 2:</label>
+      <input type="text" id="daily-2" name="daily-2" required>
+    </div>
 
+    <div id="weekly" class="checklist">
+      <label for="weekly-1">Weekly Checklist Item 1:</label>
+      <input type="text" id="weekly-1" name="weekly-1" required>
+      <label for="weekly-2">Weekly Checklist Item 2:</label>
+      <input type="text" id="weekly-2" name="weekly-2" required>
+    </div>
+
+    <div id="monthly" class="checklist">
+      <label for="monthly-1">Monthly Checklist Item 1:</label>
+      <input type="text" id="monthly-1" name="monthly-1" required>
+      <label for="monthly-2">Monthly Checklist Item 2:</label>
+      <input type="text" id="monthly-2" name="monthly-2" required>
+    </div>
+
+    <div id="annual" class="checklist">
+      <label for="annual-1">Annual Checklist Item 1:</label>
+      <input type="text" id="annual-1" name="annual-1" required>
+      <label for="annual-2">Annual Checklist Item 2:</label>
+      <input type="text" id="annual-2" name="annual-2" required>
+    </div>
+
+    <button type="submit">Submit</button>
+    <div class="confirmation" id="confirmationMessage">Thank you for your submission!</div>
+  </form>
+  <script>
     document.querySelectorAll("nav button").forEach(btn => {
       btn.onclick = () => {
         document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         const target = btn.dataset.target;
-        iframe.src = formSrcBaseMap[target];
+        document.querySelectorAll(".checklist").forEach(section => {
+          section.classList.remove("active");
+        });
+        document.getElementById(target).classList.add("active");
+        document.getElementById("checklistType").value = target;
       };
     });
   </script>
