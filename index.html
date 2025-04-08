@@ -76,6 +76,12 @@
 .tooltip:hover::after {
   display: block;
 }
+.info-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
   </style>
 </head>
 <body>
@@ -92,70 +98,54 @@
 
     
   <div id="daily" class="checklist active">
-    <label for="daily-q1">
-      Are all escape routes clear and unobstructed?
-      <span class="tooltip" data-tip="Check for blockages, clutter, or locked exits.">?</span>
-    </label>
+    <p style="background:#fff3cd; color:#856404; padding:1rem; border:1px solid #ffeeba; border-radius:5px;">
+      ⚠️ These are visual checks. Only submit this form if an issue is identified.
+    </p>
+  
+    <label for="daily-q1">Are all escape routes clear and unobstructed?</label>
+    <div class="info-text">Check for blockages, clutter, or locked exits.</div>
     <select id="daily-q1" name="daily-q1">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-daily-q1">
       <label for="note-daily-q1-input">Please provide details:</label>
       <textarea id="note-daily-q1-input" name="note-daily-q1"></textarea>
     </div>
   
-    <label for="daily-q2">
-      Are fire extinguishers easily accessible?
-      <span class="tooltip" data-tip="Ensure extinguishers are clearly visible and not obstructed.">?</span>
-    </label>
+    <label for="daily-q2">Are fire extinguishers easily accessible?</label>
+    <div class="info-text">Ensure extinguishers are clearly visible and not obstructed.</div>
     <select id="daily-q2" name="daily-q2">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-daily-q2">
       <label for="note-daily-q2-input">Please provide details:</label>
       <textarea id="note-daily-q2-input" name="note-daily-q2"></textarea>
     </div>
   
-    <label for="daily-q3">
-      Are fire exits clearly marked?
-      <span class="tooltip" data-tip="Signs should be well lit and not obstructed.">?</span>
-    </label>
+    <label for="daily-q3">Are fire exits clearly marked?</label>
+    <div class="info-text">Signs should be well lit and not obstructed.</div>
     <select id="daily-q3" name="daily-q3">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-daily-q3">
       <label for="note-daily-q3-input">Please provide details:</label>
       <textarea id="note-daily-q3-input" name="note-daily-q3"></textarea>
     </div>
   
-    <label for="daily-q4">
-      Are there no obvious fire hazards?
-      <span class="tooltip" data-tip="Look for overloaded sockets, exposed wires, blocked vents.">?</span>
-    </label>
+    <label for="daily-q4">Are there no obvious fire hazards?</label>
+    <div class="info-text">Look for overloaded sockets, exposed wires, blocked vents.</div>
     <select id="daily-q4" name="daily-q4">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-daily-q4">
       <label for="note-daily-q4-input">Please provide details:</label>
       <textarea id="note-daily-q4-input" name="note-daily-q4"></textarea>
     </div>
   
-    <label for="daily-q5">
-      Is good housekeeping maintained?
-      <span class="tooltip" data-tip="Waste removed regularly, no combustible build-up.">?</span>
-    </label>
+    <label for="daily-q5">Is good housekeeping maintained?</label>
+    <div class="info-text">Waste removed regularly, no combustible build-up.</div>
     <select id="daily-q5" name="daily-q5">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-daily-q5">
       <label for="note-daily-q5-input">Please provide details:</label>
@@ -164,98 +154,70 @@
   </div>
 
   <div id="weekly" class="checklist">
-    <label for="weekly-q1">
-      Has the fire alarm system been tested?
-      <span class="tooltip" data-tip="Ensure test button activated and alarm was audible.">?</span>
-    </label>
+    <label for="weekly-q1">Has the fire alarm system been tested?</label>
+    <div class="info-text">Ensure that the fire alarm system is functioning correctly.</div>
     <select id="weekly-q1" name="weekly-q1">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q1">
       <label for="note-weekly-q1-input">Please provide details:</label>
       <textarea id="note-weekly-q1-input" name="note-weekly-q1"></textarea>
     </div>
-  
-    <label for="weekly-q2">
-      Are all manual call points accessible and undamaged?
-      <span class="tooltip" data-tip="Check glass intact, no blockages, reachable.">?</span>
-    </label>
+
+    <label for="weekly-q2">Are all manual call points accessible and undamaged?</label>
+    <div class="info-text">Check that call points are visible and functional.</div>
     <select id="weekly-q2" name="weekly-q2">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q2">
       <label for="note-weekly-q2-input">Please provide details:</label>
       <textarea id="note-weekly-q2-input" name="note-weekly-q2"></textarea>
     </div>
-  
-    <label for="weekly-q3">
-      Is the emergency lighting functioning?
-      <span class="tooltip" data-tip="Test using the test switch or button; lights should come on.">?</span>
-    </label>
+
+    <label for="weekly-q3">Is the emergency lighting functioning?</label>
+    <div class="info-text">Ensure emergency lights are operational.</div>
     <select id="weekly-q3" name="weekly-q3">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q3">
       <label for="note-weekly-q3-input">Please provide details:</label>
       <textarea id="note-weekly-q3-input" name="note-weekly-q3"></textarea>
     </div>
-  
-    <label for="weekly-q4">
-      Are fire extinguishers in place and intact?
-      <span class="tooltip" data-tip="Verify correct type, no damage, pressure in range.">?</span>
-    </label>
+
+    <label for="weekly-q4">Are fire extinguishers in place and intact?</label>
+    <div class="info-text">Check that extinguishers are present and not expired.</div>
     <select id="weekly-q4" name="weekly-q4">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q4">
       <label for="note-weekly-q4-input">Please provide details:</label>
       <textarea id="note-weekly-q4-input" name="note-weekly-q4"></textarea>
     </div>
-  
-    <label for="weekly-q5">
-      Are exit signs clearly visible and lit?
-      <span class="tooltip" data-tip="Check for clear signage, no burn-outs or blockages.">?</span>
-    </label>
+
+    <label for="weekly-q5">Are exit signs clearly visible and lit?</label>
+    <div class="info-text">Ensure exit signs are illuminated and not obstructed.</div>
     <select id="weekly-q5" name="weekly-q5">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q5">
       <label for="note-weekly-q5-input">Please provide details:</label>
       <textarea id="note-weekly-q5-input" name="note-weekly-q5"></textarea>
     </div>
-  
-    <label for="weekly-q6">
-      Is firefighting equipment unobstructed?
-      <span class="tooltip" data-tip="Ensure hoses, extinguishers, blankets are clear of obstacles.">?</span>
-    </label>
+
+    <label for="weekly-q6">Is firefighting equipment unobstructed?</label>
+    <div class="info-text">Ensure that firefighting equipment is accessible.</div>
     <select id="weekly-q6" name="weekly-q6">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q6">
       <label for="note-weekly-q6-input">Please provide details:</label>
       <textarea id="note-weekly-q6-input" name="note-weekly-q6"></textarea>
     </div>
-  
-    <label for="weekly-q7">
-      Has the weekly log been reviewed and updated?
-      <span class="tooltip" data-tip="Ensure any prior issues were reviewed and signed off.">?</span>
-    </label>
+
+    <label for="weekly-q7">Has the weekly log been reviewed and updated?</label>
+    <div class="info-text">Check that the log reflects current safety measures.</div>
     <select id="weekly-q7" name="weekly-q7">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-weekly-q7">
       <label for="note-weekly-q7-input">Please provide details:</label>
@@ -264,225 +226,162 @@
   </div>
 
   <div id="monthly" class="checklist">
-    <label for="monthly-q1">
-      Was the emergency lighting duration test completed?
-      <span class="tooltip" data-tip="Run test for 1–3 minutes; lights must stay on.">?</span>
-    </label>
+    <label for="monthly-q1">Was the emergency lighting duration test completed?</label>
+    <div class="info-text">Run test for 1–3 minutes; lights must stay on.</div>
     <select id="monthly-q1" name="monthly-q1">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q1">
       <label for="note-monthly-q1-input">Please provide details:</label>
       <textarea id="note-monthly-q1-input" name="note-monthly-q1"></textarea>
     </div>
-  
-    <label for="monthly-q2">
-      Have all fire doors been inspected?
-      <span class="tooltip" data-tip="Check that doors close fully, aren't damaged or wedged open.">?</span>
-    </label>
+
+    <label for="monthly-q2">Have all fire doors been inspected?</label>
+    <div class="info-text">Check that doors close fully, aren't damaged or wedged open.</div>
     <select id="monthly-q2" name="monthly-q2">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q2">
       <label for="note-monthly-q2-input">Please provide details:</label>
       <textarea id="note-monthly-q2-input" name="note-monthly-q2"></textarea>
     </div>
-  
-    <label for="monthly-q3">
-      Are all escape route signs present and legible?
-      <span class="tooltip" data-tip="No missing, damaged or blocked signage.">?</span>
-    </label>
+
+    <label for="monthly-q3">Are all escape route signs present and legible?</label>
+    <div class="info-text">No missing, damaged or blocked signage.</div>
     <select id="monthly-q3" name="monthly-q3">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q3">
       <label for="note-monthly-q3-input">Please provide details:</label>
       <textarea id="note-monthly-q3-input" name="note-monthly-q3"></textarea>
     </div>
-  
-    <label for="monthly-q4">
-      Is combustible storage controlled and monitored?
-      <span class="tooltip" data-tip="Avoid stockpiles of paper, cardboard, or flammable waste.">?</span>
-    </label>
+
+    <label for="monthly-q4">Is combustible storage controlled and monitored?</label>
+    <div class="info-text">Avoid stockpiles of paper, cardboard, or flammable waste.</div>
     <select id="monthly-q4" name="monthly-q4">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q4">
       <label for="note-monthly-q4-input">Please provide details:</label>
       <textarea id="note-monthly-q4-input" name="note-monthly-q4"></textarea>
     </div>
-  
-    <label for="monthly-q5">
-      Are fire action notices clearly posted?
-      <span class="tooltip" data-tip="Must be located near exits and assembly points.">?</span>
-    </label>
+
+    <label for="monthly-q5">Are fire action notices clearly posted?</label>
+    <div class="info-text">Must be located near exits and assembly points.</div>
     <select id="monthly-q5" name="monthly-q5">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q5">
       <label for="note-monthly-q5-input">Please provide details:</label>
       <textarea id="note-monthly-q5-input" name="note-monthly-q5"></textarea>
     </div>
-  
-    <label for="monthly-q6">
-      Is the fire alarm panel accessible and unobstructed?
-      <span class="tooltip" data-tip="Access must be clear at all times.">?</span>
-    </label>
+
+    <label for="monthly-q6">Is the fire alarm panel accessible and unobstructed?</label>
+    <div class="info-text">Access must be clear at all times.</div>
     <select id="monthly-q6" name="monthly-q6">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q6">
       <label for="note-monthly-q6-input">Please provide details:</label>
       <textarea id="note-monthly-q6-input" name="note-monthly-q6"></textarea>
     </div>
-  
-    <label for="monthly-q7">
-      Have all reported issues been logged and resolved?
-      <span class="tooltip" data-tip="Review logbooks and verify actions taken.">?</span>
-    </label>
+
+    <label for="monthly-q7">Have all reported issues been logged and resolved?</label>
+    <div class="info-text">Review logbooks and verify actions taken.</div>
     <select id="monthly-q7" name="monthly-q7">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-monthly-q7">
       <label for="note-monthly-q7-input">Please provide details:</label>
       <textarea id="note-monthly-q7-input" name="note-monthly-q7"></textarea>
     </div>
   </div>
+
   <div id="annual" class="checklist">
-    <label for="annual-q1">
-      Has the fire alarm system been serviced and certified?
-      <span class="tooltip" data-tip="Carried out by a qualified contractor. Certificate should be on file.">?</span>
-    </label>
+    <label for="annual-q1">Has the fire alarm system been serviced and certified?</label>
+    <div class="info-text">Serviced by a qualified engineer. Certificate should be available.</div>
     <select id="annual-q1" name="annual-q1">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q1">
       <label for="note-annual-q1-input">Please provide details:</label>
       <textarea id="note-annual-q1-input" name="note-annual-q1"></textarea>
     </div>
   
-    <label for="annual-q2">
-      Has the full emergency lighting test been completed?
-      <span class="tooltip" data-tip="Battery discharge test for 3 hours minimum.">?</span>
-    </label>
+    <label for="annual-q2">Has the full emergency lighting test been completed?</label>
+    <div class="info-text">Run full 3-hour discharge test under backup power.</div>
     <select id="annual-q2" name="annual-q2">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q2">
       <label for="note-annual-q2-input">Please provide details:</label>
       <textarea id="note-annual-q2-input" name="note-annual-q2"></textarea>
     </div>
   
-    <label for="annual-q3">
-      Have fire extinguishers been inspected and serviced?
-      <span class="tooltip" data-tip="Tagged, checked, and recorded by a competent provider.">?</span>
-    </label>
+    <label for="annual-q3">Have fire extinguishers been inspected and serviced?</label>
+    <div class="info-text">Check service tags. Annual service must be recorded.</div>
     <select id="annual-q3" name="annual-q3">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q3">
       <label for="note-annual-q3-input">Please provide details:</label>
       <textarea id="note-annual-q3-input" name="note-annual-q3"></textarea>
     </div>
   
-    <label for="annual-q4">
-      Has the fire risk assessment been reviewed and updated?
-      <span class="tooltip" data-tip="Should reflect current layout, staffing, and risks.">?</span>
-    </label>
+    <label for="annual-q4">Has the fire risk assessment been reviewed and updated?</label>
+    <div class="info-text">Should reflect current layout, personnel, and operations.</div>
     <select id="annual-q4" name="annual-q4">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q4">
       <label for="note-annual-q4-input">Please provide details:</label>
       <textarea id="note-annual-q4-input" name="note-annual-q4"></textarea>
     </div>
   
-    <label for="annual-q5">
-      Was a fire evacuation drill conducted and documented?
-      <span class="tooltip" data-tip="Log time, date, duration, and feedback.">?</span>
-    </label>
+    <label for="annual-q5">Was a fire evacuation drill conducted and documented?</label>
+    <div class="info-text">Record drill date, time, attendance, and feedback.</div>
     <select id="annual-q5" name="annual-q5">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q5">
       <label for="note-annual-q5-input">Please provide details:</label>
       <textarea id="note-annual-q5-input" name="note-annual-q5"></textarea>
     </div>
   
-    <label for="annual-q6">
-      Has fire warden training been reviewed or renewed?
-      <span class="tooltip" data-tip="Ensure named wardens have valid certification.">?</span>
-    </label>
+    <label for="annual-q6">Has fire warden training been reviewed or renewed?</label>
+    <div class="info-text">Training certificates should be current and filed.</div>
     <select id="annual-q6" name="annual-q6">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q6">
       <label for="note-annual-q6-input">Please provide details:</label>
       <textarea id="note-annual-q6-input" name="note-annual-q6"></textarea>
     </div>
   
-    <label for="annual-q7">
-      Have all PEEPs (Personal Emergency Evacuation Plans) been reviewed?
-      <span class="tooltip" data-tip="Plans for staff/visitors with mobility needs.">?</span>
-    </label>
+    <label for="annual-q7">Have all PEEPs been reviewed?</label>
+    <div class="info-text">Update Personal Emergency Evacuation Plans if needed.</div>
     <select id="annual-q7" name="annual-q7">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q7">
       <label for="note-annual-q7-input">Please provide details:</label>
       <textarea id="note-annual-q7-input" name="note-annual-q7"></textarea>
     </div>
   
-    <label for="annual-q8">
-      Have fixed fire suppression systems been serviced?
-      <span class="tooltip" data-tip="Includes sprinklers, gas systems, dry risers, etc.">?</span>
-    </label>
+    <label for="annual-q8">Has the fire suppression system been serviced?</label>
+    <div class="info-text">Check sprinkler/dry riser/gas suppression maintenance records.</div>
     <select id="annual-q8" name="annual-q8">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q8">
       <label for="note-annual-q8-input">Please provide details:</label>
       <textarea id="note-annual-q8-input" name="note-annual-q8"></textarea>
     </div>
   
-    <label for="annual-q9">
-      Has the fire safety policy and procedure been reviewed?
-      <span class="tooltip" data-tip="Annual review with sign-off by Responsible Person.">?</span>
-    </label>
+    <label for="annual-q9">Has the fire safety policy been reviewed and signed off?</label>
+    <div class="info-text">Must be reviewed by the Responsible Person and updated if necessary.</div>
     <select id="annual-q9" name="annual-q9">
-      <option value="">-</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
     <div class="note-section" id="note-annual-q9">
       <label for="note-annual-q9-input">Please provide details:</label>
@@ -490,7 +389,8 @@
     </div>
   </div>
 
-    <button type="submit">Submit</button>
+
+  <button type="submit">Submit</button>
     <div class="confirmation" id="confirmationMessage">Thank you for your submission!</div>
   </form>
   <script>
