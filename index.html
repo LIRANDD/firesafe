@@ -107,6 +107,10 @@
     <select id="daily-q1" name="daily-q1">
       <option value="">-</option><option value="Yes">Yes</option><option value="No">No</option>
     </select>
+    <div class="callpoint-followup" id="monthly-callpoint-followup" style="display:none;">
+      <label for="monthly-callpoint-tested">Which call point was tested?</label>
+      <input type="text" id="monthly-callpoint-tested" name="monthly-callpoint-tested" />
+    </div>
     <div class="note-section" id="note-daily-q1">
       <label for="note-daily-q1-input">Please provide details:</label>
       <textarea id="note-daily-q1-input" name="note-daily-q1"></textarea>
@@ -422,6 +426,9 @@
 
     document.querySelectorAll("select").forEach(select => {
       select.addEventListener("change", function() {
+        if (this.id === "monthly-q1") {
+          document.getElementById("monthly-callpoint-followup").style.display = this.value === "Yes" ? "block" : "none";
+        }
         const noteSection = document.getElementById("note-" + this.name);
         if (this.value === "No") {
           noteSection.style.display = "block";
